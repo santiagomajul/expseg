@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Expedientes</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="cliente.js" defer></script>
+</head>
+<body>
+    <nav class="menu">
+        <button class="menu-btn" data-target="registrar-expedientes">Registrar Expedientes</button>
+        <button class="menu-btn" data-target="registrar-movimientos">Registrar Movimientos</button>
+        <button class="menu-btn" data-target="buscar-expedientes">Buscar Expedientes</button>
+        <button class="menu-btn" data-target="buscar-movimientos">Buscar Movimientos</button>
+    </nav>
+
+    <section id="registrar-expedientes" class="section active">
+        <h1>Registrar Expedientes</h1>
+        <form id="expedienteForm">
+            <label>
+                Fecha:
+                <input type="date" name="fecha" required>
+            </label>
+            <label>
+                Número:
+                <input type="text" name="numero" placeholder="Número" required>
+            </label>
+            <label>
+                Asunto:
+                <input type="text" name="asunto" placeholder="Asunto" required>
+            </label>
+            <label>
+                Causante:
+                <input type="text" name="causante" placeholder="Causante" required>
+            </label>
+            <label>
+                Adjunto:
+                <textarea name="adjunto" id="adjunto" rows="4" cols="50"></textarea>
+            </label>
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
+
+    <section id="registrar-movimientos" class="section">
+        <h1>Registrar Movimientos</h1>
+        <form id="movimientoForm">
+            <label>
+                Número de expediente:
+                <input type="number" id="expedienteId" name="expediente_id" placeholder="Número de expediente" required>
+            </label>
+            <label>
+                Oficina:
+                <input id="oficina" name="oficina" placeholder="Oficina" required>
+            </label>
+            <label>
+                Nombre y apellido del remitente:
+                <input type="text" id="nombre_recibe" name="nombre_recibe" placeholder="Nombre y apellido del remitente" required>
+            </label>
+            <label>
+                Fecha:
+                <input type="date" name="fecha_movimiento" required>
+            </label>
+            <label>
+                Descripción:
+                <input type="text" name="descripcion" placeholder="Descripción">
+            </label>
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
+
+    <section id="buscar-expedientes" class="section">
+        <h1>Buscar Expedientes</h1>
+        <div>
+            <input type="text" id="terminoBusqueda" placeholder="Buscar por número, asunto o causante...">
+            <button id="buscarBtn">Buscar</button>
+        </div>
+        <table id="tablaResultados">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Número</th>
+                    <th>Asunto</th>
+                    <th>Causante</th>
+                    <th>Adjunto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los resultados se cargarán dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <section id="buscar-movimientos" class="section">
+        <h1>Buscar Movimientos</h1>
+        <div>
+            <input type="text" id="terminoBusquedaMovimientos" placeholder="Buscar por número de expediente, oficina o remitente...">
+            <button id="buscarMovimientosBtn">Buscar</button>
+        </div>
+        <table id="tablaResultadosMovimientos">
+            <thead>
+                <tr>
+                    <th>IdMovimiento</th>
+                    <th>Número de Expediente</th>
+                    <th>Oficina</th>
+                    <th>Remitente</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los resultados se cargarán dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
