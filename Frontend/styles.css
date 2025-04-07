@@ -14,7 +14,9 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    transition: background-color 0.3s;
 }
+
 
 /* Nuevo estilo para el menú */
 .menu {
@@ -28,6 +30,12 @@ body {
     display: flex;
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+}
+
+.menu.scrolled {
+    background-color: rgba(0, 51, 102, 0.8);
+    backdrop-filter: blur(10px);
 }
 
 .menu nav {
@@ -52,32 +60,117 @@ body {
 .menu-btn:hover {
     background-color: white;
     color: #003366;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-img {
+    background-color: transparent;
+    padding: 2px 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: none;
+    transition: none;
+}
+
+.btn-img:hover{
+    background-color: #003366;
+    transform: none;
+    box-shadow: none
+
+}
+
+.inicio-barra{
+    height: 40px;
 }
 
 main {
     width: 100%;
     max-width: 900px;
-    margin: 20px auto;
+    margin-top: 80px;
     padding: 25px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .section {
     display: none;
     margin-top: 85px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .section.active {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
+
+#inicioSection {
+    background-color: #002244;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 70px;
+    color: white;
+    text-align: center;
+    height: auto; /* valor por defecto cuando NO está activa */
+}
+
+#inicioSection.active {
+    display: flex;
+    height: calc(100vh - 70px); /* Solo cuando está visible */
+}
+
+
+.inicio-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeIn 1s ease-out;
+}
+
+.inicio-logo {
+    width: 200px; /* ajustá a gusto */
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.inicio-titulo {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+}
+
 
 h1 {
     text-align: center;
     margin-bottom: 10px;
     font-size: 24px;
     color: #003366;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Formularios */
@@ -88,6 +181,7 @@ form {
     background: #f1f1f1;
     padding: 20px;
     border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 label {
@@ -95,7 +189,7 @@ label {
     color: #333;
 }
 
-input, textarea, button {
+input, textarea, button,select {
     padding: 12px;
     font-size: 16px;
     border: 1px solid #ddd;
@@ -109,7 +203,7 @@ textarea {
 }
 
 button {
-    background-color: #007bff;
+    background-color: #003366;
     color: white;
     border: none;
     cursor: pointer;
@@ -119,6 +213,7 @@ button {
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Tablas */
@@ -139,10 +234,10 @@ th, td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
 }
 
-
-/* Diseño responsivo del menú */
+/* Diseño responsivo */
 @media (max-width: 768px) {
     .menu nav {
         flex-direction: column;
@@ -153,48 +248,4 @@ th, td {
         width: 90%;
         text-align: center;
     }
-}
-
-main {
-    width: 100%;
-    max-width: 1200px;
-    margin-top: 80px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.section {
-    display: none;
-}
-
-.section.active {
-    display: block;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-input, button, textarea {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #003366;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #002244;
 }

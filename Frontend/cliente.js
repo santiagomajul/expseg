@@ -113,13 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
     async function cargarExpedientes() {
         try {
             const response = await fetch('http://localhost:3000/listar_expedientes');
+            if (!response.ok) throw new Error('Error en la respuesta del servidor');
+    
             const expedientes = await response.json();
-
+    
+            // Limpiar opciones previas
             expedienteSelect.innerHTML = '<option value="" disabled selected>Seleccione un expediente</option>';
+    
             expedientes.forEach((expediente) => {
                 const option = document.createElement('option');
-                option.value = expediente.id;  // Aquí se usa el 'id' del expediente (integer)
-                option.textContent = `${expediente.numero} - ${expediente.asunto}`;  // Se muestra el número y asunto
+                option.value = expediente.id;  // Se usa el 'id' del expediente
+                option.textContent = `${expediente.numero} - ${expediente.asunto}`;  // Se muestra número y asunto
                 expedienteSelect.appendChild(option);
             });
         } catch (error) {
@@ -127,6 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Hubo un error al cargar los expedientes.');
         }
     }
+    
+    // Cargar expedientes al iniciar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarExpedientes();
+    });
+    
 
     // Función para ver los detalles de un expediente
     window.verDetalles = async (expedienteId) => {
@@ -218,10 +228,18 @@ async function buscarMovimientos() {
     });
 
     // Eventos iniciales
-    buscarBtn.addEventListener('click', buscarExpedientes);
-    cargarExpedientes();
-    buscarExpedientes();
-    buscarMovimientosBtn.addEventListener('click', buscarMovimientos);
-    cargarMovimientos();
-    buscarMovimientos();
+buscarBtn.addEventListener('click', buscarExpedientes);
+buscarMovimientosBtn.addEventListener('click', buscarMovimientos);
+
+// Cargar datos pero sin mostrar secciones
+cargarExpedientes();
+buscarExpedientes();
+cargarMovimientos();
+buscarMovimientos();
+
+// Mostrar solo la sección de inicio
+sections.forEach(section => section.classList.remove('active'));
+document.getElementById('inicioSection').classList.add('active');
+
+
 });

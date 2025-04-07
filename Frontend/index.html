@@ -7,21 +7,25 @@
     <link rel="stylesheet" href="styles.css">
     <script src="cliente.js" defer></script>
 </head>
-<body>
+<body>    
     <nav class="menu">
+        <button class="menu-btn btn-img" data-target="inicioSection"><img src="imagenes/img-silva.png" alt="Logo del inicio" class="inicio-barra"></button>
         <button class="menu-btn" data-target="registrar-expedientes">Registrar Expedientes</button>
         <button class="menu-btn" data-target="registrar-movimientos">Registrar Movimientos</button>
         <button class="menu-btn" data-target="buscar-expedientes">Buscar Expedientes</button>
         <button class="menu-btn" data-target="buscar-movimientos">Buscar Movimientos</button>
     </nav>
 
+    <section id="inicioSection" class="section active">
+        <div class="inicio-contenido">
+            <img src="imagenes/img-silva.png" alt="Logo del sistema" class="inicio-logo">
+            <h1 class="inicio-titulo">Sistema para el seguimiento de expedientes</h1>
+        </div>
+    </section>
+
     <section id="registrar-expedientes" class="section active">
         <h1>Registrar Expedientes</h1>
         <form id="expedienteForm">
-            <label>
-                Fecha:
-                <input type="date" name="fecha" required>
-            </label>
             <label>
                 Número:
                 <input type="text" name="numero" placeholder="Número" required>
@@ -29,6 +33,10 @@
             <label>
                 Asunto:
                 <input type="text" name="asunto" placeholder="Asunto" required>
+            </label>
+            <label>
+                Fecha:
+                <input type="date" name="fecha" required>
             </label>
             <label>
                 Causante:
@@ -47,7 +55,9 @@
         <form id="movimientoForm">
             <label>
                 Número de expediente:
-                <input type="number" id="expedienteId" name="expediente_id" placeholder="Número de expediente" required>
+                <select id="expedienteId" name="expediente_id" required>
+                    <option value="" disabled selected>Seleccione un expediente</option>
+                </select>
             </label>
             <label>
                 Oficina:
